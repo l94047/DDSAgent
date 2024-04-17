@@ -30,7 +30,7 @@ DdsBridge::DdsBridge(
         const std::shared_ptr<utils::SlotThreadPool>& thread_pool,
         const RoutesConfiguration& routes_config,
         const bool remove_unused_entities,
-        const bool authorization_flag,
+        const bool master_flag,
         const std::vector<core::types::ManualTopic>& manual_topics)
     : Bridge(participants_database, payload_pool, thread_pool)
     , topic_(topic)
@@ -39,7 +39,7 @@ DdsBridge::DdsBridge(
     logDebug(DDSPIPE_DDSBRIDGE, "Creating DdsBridge " << *this << ".");
 
     routes_ = routes_config();
-    authorization_flag_ = authorization_flag;
+    master_flag_ = master_flag;
 
     if (remove_unused_entities && topic->topic_discoverer() != DEFAULT_PARTICIPANT_ID)
     {
@@ -189,12 +189,12 @@ void DdsBridge::remove_writer(
     }
 }
 
-void DdsBridge::change_authorization_flag(bool authorization_flag) noexcept
+void DdsBridge::change_master_flag(bool master_flag) noexcept
 {
-    authorization_flag_ = authorization_flag;
+    master_flag_ = master_flag;
     for(auto &it_track : tracks_)
     {
-        it_track.second->change_authorization(authorization_flag);
+        it_track.second->change_master(master_flag);
     }
 }
 
@@ -283,7 +283,7 @@ void DdsBridge::add_writers_to_tracks_nts_(
                 payload_pool_,
                 thread_pool_);
 
-            tracks_[id]->change_authorization(authorization_flag_);
+            tracks_[id]->change_master(master_flag_);
 
             if (enabled_)
             {

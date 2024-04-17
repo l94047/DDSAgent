@@ -67,7 +67,7 @@ struct SpecsConfiguration : public ddspipe::core::IConfiguration
     
     ////
     //should this router is using as master or as backup 
-    bool authorization_flag = false;
+    bool master_flag = false;
 
     //! The globally configured Topic QoS.
     ddspipe::core::types::TopicQoS topic_qos{};

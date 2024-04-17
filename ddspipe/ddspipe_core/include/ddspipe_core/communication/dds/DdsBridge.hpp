@@ -61,7 +61,7 @@ public:
             const std::shared_ptr<utils::SlotThreadPool>& thread_pool,
             const RoutesConfiguration& routes_config,
             const bool remove_unused_entities,
-            const bool authorization_flag,
+            const bool master_flag,
             const std::vector<core::types::ManualTopic>& manual_topics);
 
     DDSPIPE_CORE_DllAPI
@@ -113,7 +113,7 @@ public:
 
 
     DDSPIPE_CORE_DllAPI
-    void change_authorization_flag(bool authorization_flag) noexcept;
+    void change_master_flag(bool master_flag) noexcept;
     
 protected:
 

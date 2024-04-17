@@ -179,10 +179,10 @@ bool Track::should_transmit_() noexcept
     return !exit_ && enabled_;
 }
 
-void Track::change_authorization(bool flag) noexcept
+void Track::change_master(bool flag) noexcept
 {
-    authorization_flag_ = flag;
-    logDebug(DDSPIPE_TRACK, "Track " << *this << "authorization_flag:" << authorization_flag_);
+    master_flag_ = flag;
+    logDebug(DDSPIPE_TRACK, "Track " << *this << "master_flag:" << master_flag_);
 }
 
 void Track::data_available_() noexcept
@@ -218,7 +218,7 @@ void Track::transmit_() noexcept
     // TODO: Count the times it loops to break it at some point if needed
     while (should_transmit_())
     {
-        if(!authorization_flag_){
+        if(!master_flag_){
             continue;
         }
         // It starts transmitting, so it sets the data available status as transmitting

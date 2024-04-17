@@ -135,7 +135,7 @@ public:
     bool has_writers() noexcept;
 
     DDSPIPE_CORE_DllAPI
-    void change_authorization(bool flag) noexcept;
+    void change_master(bool flag) noexcept;
 
 protected:
 
@@ -209,7 +209,7 @@ protected:
     //! Whether the Track is currently enabled
     std::atomic<bool> enabled_;
 
-    std::atomic<bool> authorization_flag_;
+    std::atomic<bool> master_flag_;
 
     /**
      * Mutex to prevent simultaneous calls to \c enable and/or \c disable .

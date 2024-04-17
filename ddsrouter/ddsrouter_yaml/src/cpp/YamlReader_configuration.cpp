@@ -57,7 +57,7 @@ void YamlReader::fill(
     //Get router use configurations, should the writer send data
     if(YamlReader::is_tag_present(yml, AUTHORIZATION_FLAG_TAG))
     {
-        object.authorization_flag = YamlReader::get<bool>(yml, AUTHORIZATION_FLAG_TAG, version);
+        object.master_flag = YamlReader::get<bool>(yml, AUTHORIZATION_FLAG_TAG, version);
     }
 
     // Optional Topic QoS
@@ -273,11 +273,11 @@ void YamlReader::fill(
     object.ddspipe_configuration.discovery_trigger = object.advanced_options.discovery_trigger;
 
     /**
-     * authorization_flag is attributes of RouterConfiguration,
+     * master_flag is attributes of RouterConfiguration,
      *  but since they are used in the DdsPipe,
      * we should copy it to the DdsPipeConfiguration
     */
-    object.ddspipe_configuration.authorization_flag = object.advanced_options.authorization_flag;
+    object.ddspipe_configuration.master_flag = object.advanced_options.master_flag;
 
     /////
     // Get optional xml configuration

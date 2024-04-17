@@ -74,7 +74,7 @@ public:
     virtual void disable() noexcept = 0;
 
     //!Wether change the router as master
-    std::atomic<bool> authorization_flag_;
+    std::atomic<bool> master_flag_;
 
 protected:
 

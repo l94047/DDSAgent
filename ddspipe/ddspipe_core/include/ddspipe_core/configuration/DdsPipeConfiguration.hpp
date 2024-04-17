@@ -120,7 +120,7 @@ struct DdsPipeConfiguration : public IConfiguration
     bool init_enabled = false;
 
     //whether this router should sent data
-    bool authorization_flag = false;
+    bool master_flag = false;
 
     //! The type of the entity whose discovery should trigger the discovery callbacks.
     DiscoveryTrigger discovery_trigger = DiscoveryTrigger::READER;
