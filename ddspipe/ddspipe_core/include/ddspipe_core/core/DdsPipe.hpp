@@ -125,6 +125,9 @@ public:
      */
     DDSPIPE_CORE_DllAPI
     utils::ReturnCode disable() noexcept;
+    
+    DDSPIPE_CORE_DllAPI
+    void reload_authorization_flag(bool authorization_flag) noexcept;
 
 protected:
 

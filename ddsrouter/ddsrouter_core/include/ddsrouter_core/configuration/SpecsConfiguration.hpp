@@ -64,6 +64,10 @@ struct SpecsConfiguration : public ddspipe::core::IConfiguration
      * @warning Setting it to true is incompatible with transient-local durability.
      */
     bool remove_unused_entities = false;
+    
+    ////
+    //should this router is using as master or as backup 
+    bool authorization_flag = false;
 
     //! The globally configured Topic QoS.
     ddspipe::core::types::TopicQoS topic_qos{};

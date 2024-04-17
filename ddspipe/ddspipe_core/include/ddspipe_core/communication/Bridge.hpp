@@ -73,6 +73,9 @@ public:
     DDSPIPE_CORE_DllAPI
     virtual void disable() noexcept = 0;
 
+    //!Wether change the router as master
+    std::atomic<bool> authorization_flag_;
+
 protected:
 
     //! Collection of Participants to manage communication

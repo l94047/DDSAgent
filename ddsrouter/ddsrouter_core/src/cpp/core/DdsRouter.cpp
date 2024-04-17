@@ -116,6 +116,7 @@ utils::ReturnCode DdsRouter::reload_configuration(
                   utils::Formatter() <<
                       "Configuration for Reload DDS Router is invalid: " << error_msg);
     }
+    // new_configuration.ddspipe_configuration.authorization_flag = new_configuration.advanced_options.authorization_flag;
 
     // Reload the DdsPipe configuration, since it is the only reconfigurable attribute.
     return ddspipe_->reload_configuration(new_configuration.ddspipe_configuration);

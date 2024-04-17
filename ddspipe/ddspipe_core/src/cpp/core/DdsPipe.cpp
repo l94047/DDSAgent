@@ -43,6 +43,7 @@ DdsPipe::DdsPipe(
     , enabled_(false)
 {
     logDebug(DDSPIPE, "Creating DDS Pipe.");
+    logDebug(DDSPIPE, "authorization_flage:" << configuration_.authorization_flag);
 
     // Check that the configuration is correct
     utils::Formatter error_msg;
@@ -122,6 +123,7 @@ utils::ReturnCode DdsPipe::reload_configuration(
                   utils::Formatter() <<
                       "Configuration for Reload DDS Pipe is invalid: " << error_msg);
     }
+    reload_authorization_flag(new_configuration.authorization_flag);
 
     auto allowed_topics = std::make_shared<ddspipe::core::AllowedTopicList>(
         new_configuration.allowlist,
@@ -129,6 +131,17 @@ utils::ReturnCode DdsPipe::reload_configuration(
 
     return reload_allowed_topics_(allowed_topics);
 }
+
+void DdsPipe::reload_authorization_flag(bool authorization_flag) noexcept
+{
+    // change_master(new_configuration.authorization_flag);
+    logDebug(DDSPIPE, "change the authorization_flag:"<<authorization_flag);
+    for(auto &it_bridge : bridges_)
+    {
+        it_bridge.second->change_authorization_flag(authorization_flag);
+    }
+}
+
 
 utils::ReturnCode DdsPipe::enable() noexcept
 {
@@ -500,7 +513,8 @@ void DdsPipe::create_new_bridge_nts_(
                         thread_pool_,
                         routes_config,
                         configuration_.remove_unused_entities,
-                        manual_topics);
+                        configuration_.authorization_flag,
+                        manual_topics);   
 
         if (enabled)
         {

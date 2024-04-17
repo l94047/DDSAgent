@@ -17,7 +17,7 @@
 ###############################################################################
 
 set(MODULE_NAME
-    ddsrouter_tool)
+ddsrouter_tool)
 
 set(MODULE_SUMMARY
     "C++ application to run a DDS Router from a YAML configuration file.")

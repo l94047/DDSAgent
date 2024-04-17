@@ -179,6 +179,12 @@ bool Track::should_transmit_() noexcept
     return !exit_ && enabled_;
 }
 
+void Track::change_authorization(bool flag) noexcept
+{
+    authorization_flag_ = flag;
+    logDebug(DDSPIPE_TRACK, "Track " << *this << "authorization_flag:" << authorization_flag_);
+}
+
 void Track::data_available_() noexcept
 {
     // Only hear callback if it is enabled
@@ -212,6 +218,9 @@ void Track::transmit_() noexcept
     // TODO: Count the times it loops to break it at some point if needed
     while (should_transmit_())
     {
+        if(!authorization_flag_){
+            continue;
+        }
         // It starts transmitting, so it sets the data available status as transmitting
         // This will erase every previous value added in on_data_available and set 1
         data_available_status_.store(DataAvailableStatus::transmitting_data);

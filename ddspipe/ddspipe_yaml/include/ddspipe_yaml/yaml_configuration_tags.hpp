@@ -143,6 +143,9 @@ constexpr const char* WAIT_ALL_ACKED_TIMEOUT_TAG("wait-all-acked-timeout"); //! 
 constexpr const char* REMOVE_UNUSED_ENTITIES_TAG("remove-unused-entities"); //! Dynamically create and delete entities and tracks.
 constexpr const char* DISCOVERY_TRIGGER_TAG("discovery-trigger"); //! Make the trigger of the DDS Pipe callbacks configurable.
 
+//use related tag
+constexpr const char* AUTHORIZATION_FLAG_TAG("authorization_flag");     //!Though create the bridge , don't use it until other router is bad
+
 // XML configuration tags
 constexpr const char* XML_TAG("xml"); //! Tag to read xml configuration
 constexpr const char* XML_RAW_TAG("raw"); //! Xml RAW as string

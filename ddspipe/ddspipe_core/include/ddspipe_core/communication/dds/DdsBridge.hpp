@@ -61,6 +61,7 @@ public:
             const std::shared_ptr<utils::SlotThreadPool>& thread_pool,
             const RoutesConfiguration& routes_config,
             const bool remove_unused_entities,
+            const bool authorization_flag,
             const std::vector<core::types::ManualTopic>& manual_topics);
 
     DDSPIPE_CORE_DllAPI
@@ -110,6 +111,10 @@ public:
     void remove_writer(
             const types::ParticipantId& participant_id) noexcept;
 
+
+    DDSPIPE_CORE_DllAPI
+    void change_authorization_flag(bool authorization_flag) noexcept;
+    
 protected:
 
     /**
